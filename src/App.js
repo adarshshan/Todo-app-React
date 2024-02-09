@@ -5,7 +5,7 @@ import { BsCheckCircle } from "react-icons/bs";
 import './App.css'
 
 function App() {
-  const [isCompletedScreen, setIscompletedScreen] = useState(true);
+  const [isCompletedScreen, setIscompletedScreen] = useState(false);
   const [allTodos, setTodos] = useState([]);
   const [newTitle, setNewTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
@@ -26,7 +26,7 @@ function App() {
       description: newDescription
     }
     let updatedTodoArr = [...allTodos];
-    updatedTodoArr.push(newTodoItem);
+    updatedTodoArr.unshift(newTodoItem);
     setTodos(updatedTodoArr);
     localStorage.setItem('todoList', JSON.stringify(updatedTodoArr));
   }
@@ -35,6 +35,12 @@ function App() {
     reducedTodo.splice(index, 1);
     localStorage.setItem('todoList', JSON.stringify(reducedTodo));
     setTodos(reducedTodo);
+  }
+  const handleDeleteCompletedTodo=(index)=>{
+    let reducedTodo = [...completedTodos];
+    reducedTodo.splice(index, 1);
+    localStorage.setItem('completedTodos', JSON.stringify(reducedTodo));
+    setCompletedTodos(reducedTodo);
   }
   const handleComplete = (index) => {
     let now = new Date();
@@ -50,7 +56,7 @@ function App() {
       completedOn: completedOn
     }
     let updatedCompletedArr = [...completedTodos];
-    updatedCompletedArr.push(filteredItem);
+    updatedCompletedArr.unshift(filteredItem);
     setCompletedTodos(updatedCompletedArr);
     handleDeleteTodo(index);//to delete the completed task
     localStorage.setItem('completedTodos', JSON.stringify(updatedCompletedArr));
@@ -102,7 +108,7 @@ function App() {
                   <p><small>Completed on: {item.completedOn}</small></p>
                 </div>
                 <div>
-                  <MdOutlineDelete className='icon' onClick={() => handleDeleteTodo(index)} title='Delete?' />
+                  <MdOutlineDelete className='icon' onClick={() => handleDeleteCompletedTodo(index)} title='Delete?' />
                 </div>
               </div>
             )
