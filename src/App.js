@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
-import Todo from './Components/Contents';
+import TodoContents from './Components/TodoContents';
 import FormComponent from './Components/FormComponent';
 import ButtonArea from './Components/ButtonArea';
 
@@ -75,7 +75,7 @@ function App() {
 
         <ButtonArea isCompletedScreen={isCompletedScreen} setIscompletedScreen={setIscompletedScreen} />
 
-        <Todo isCompletedScreen={isCompletedScreen}
+        <TodoContents isCompletedScreen={isCompletedScreen}
           allTodos={allTodos}
           handleDeleteTodo={handleDeleteTodo}
           handleComplete={handleComplete}
