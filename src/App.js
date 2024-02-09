@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import Todo from './Todo';
-
+import React, { useState, useEffect } from 'react';
 import './App.css'
+import Todo from './Components/Contents';
+import FormComponent from './Components/FormComponent';
+import ButtonArea from './Components/ButtonArea';
 
 function App() {
   const [isCompletedScreen, setIscompletedScreen] = useState(false);
@@ -64,23 +65,15 @@ function App() {
     <div className='App'>
       <h1>My ToDos</h1>
       <div className="todo-wrapper">
-        <div className="todo-input">
-          <div className='todo-input-item'>
-            <label>Title</label>
-            <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} placeholder="What's the task title ?" />
-          </div>
-          <div className='todo-input-item'>
-            <label>Description</label>
-            <input type="text" value={newDescription} onChange={(e) => setNewDescription(e.target.value)} placeholder="What's the task description ?" />
-          </div>
-          <div className='todo-input-item'>
-            <button type='button' onClick={handleAddTodo} className="primaryBtn">Add</button>
-          </div>
-        </div>
-        <div className="btn-area">
-          <button className={`secondaryBtn ${isCompletedScreen === false && 'active'}`} onClick={() => setIscompletedScreen(false)} >Todo</button>
-          <button className={`secondaryBtn ${isCompletedScreen === true && 'active'}`} onClick={() => setIscompletedScreen(true)}>Completed</button>
-        </div>
+        <FormComponent
+          setNewTitle={setNewTitle}
+          setNewDescription={setNewDescription}
+          newTitle={newTitle}
+          newDescription={newDescription}
+          handleAddTodo={handleAddTodo}
+        />
+
+        <ButtonArea isCompletedScreen={isCompletedScreen} setIscompletedScreen={setIscompletedScreen} />
 
         <Todo isCompletedScreen={isCompletedScreen}
           allTodos={allTodos}
