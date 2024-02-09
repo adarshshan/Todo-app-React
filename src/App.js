@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
 
 function App() {
+  const [isCompletedScreen, setIscompletedScreen] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>ToDos</h1>
+      <div className="todo-wrapper">
+        <div className="todo-input">
+          <div className='todo-input-item'>
+            <label>Title</label>
+            <input type="text" placeholder="What's the task title ?" />
+          </div>
+          <div className='todo-input-item'>
+            <label>Description</label>
+            <input type="text" placeholder="What's the task description ?" />
+          </div>
+          <div className='todo-input-item'>
+            <button type='button' className="primaryBtn">Add</button>
+          </div>
+        </div>
+        <div className="btn-area">
+          <button className={`secondaryBtn ${isCompletedScreen===false && 'active'}`} onClick={()=>setIscompletedScreen(false)} >Todo</button>
+          <button className={`secondaryBtn ${isCompletedScreen===true && 'active'}`} onClick={()=>setIscompletedScreen(true)}>Completed</button>
+        </div>
+        <div className="todo-list">
+          <div className="todo-list-item">
+            <h3>Task 1</h3>
+            <p>description</p>
+          </div>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
