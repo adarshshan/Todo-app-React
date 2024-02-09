@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { MdOutlineDelete } from "react-icons/md";
 
-function CompletedList(props) {
+import { Mycontext } from '../App';
+
+function CompletedList() {
     const {
         isCompletedScreen,
         completedTodos,
-        handleDeleteCompletedTodo } = props;
+        handleDeleteCompletedTodo } = useContext(Mycontext);
+
     return (
         <div>
             {isCompletedScreen === true && completedTodos.map((item, index) => {

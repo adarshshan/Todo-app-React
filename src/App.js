@@ -4,6 +4,8 @@ import TodoContents from './Components/TodoContents';
 import FormComponent from './Components/FormComponent';
 import ButtonArea from './Components/ButtonArea';
 
+const Mycontext = React.createContext();
+
 function App() {
   const [isCompletedScreen, setIscompletedScreen] = useState(false);
   const [allTodos, setTodos] = useState([]);
@@ -75,13 +77,13 @@ function App() {
 
         <ButtonArea isCompletedScreen={isCompletedScreen} setIscompletedScreen={setIscompletedScreen} />
 
-        <TodoContents isCompletedScreen={isCompletedScreen}
-          allTodos={allTodos}
-          handleDeleteTodo={handleDeleteTodo}
-          handleComplete={handleComplete}
-          completedTodos={completedTodos}
-          handleDeleteCompletedTodo={handleDeleteCompletedTodo}
-        />
+        <Mycontext.Provider value={{ isCompletedScreen, completedTodos, handleDeleteCompletedTodo }}>
+          <TodoContents
+            allTodos={allTodos}
+            handleDeleteTodo={handleDeleteTodo}
+            handleComplete={handleComplete}
+            isCompletedScreen={isCompletedScreen} />
+        </Mycontext.Provider>
 
       </div>
     </div>
@@ -89,3 +91,4 @@ function App() {
 }
 
 export default App
+export { Mycontext }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdOutlineDelete } from "react-icons/md";
 import { BsCheckCircle } from "react-icons/bs";
-function Todo(props) {
+function TodoList(props) {
   const {
     allTodos,
     handleDeleteTodo,
@@ -29,4 +29,4 @@ function Todo(props) {
   )
 }
 
-export default Todo
+export default TodoList

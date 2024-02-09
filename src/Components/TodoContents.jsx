@@ -1,28 +1,25 @@
 import React from 'react'
-import Todo from './TodoList';
+import TodoList from './TodoList';
 import CompletedList from './CompletedList';
 function Contents(props) {
     const {
         isCompletedScreen,
         allTodos,
         handleDeleteTodo,
-        handleComplete,
-        completedTodos,
-        handleDeleteCompletedTodo
+        handleComplete
     } = props;
     return (
         <div>
             <div className="todo-list">
-                <Todo
+                <TodoList
                     allTodos={allTodos}
                     handleDeleteTodo={handleDeleteTodo}
                     handleComplete={handleComplete}
                     isCompletedScreen={isCompletedScreen}
                 />
-                <CompletedList
-                    isCompletedScreen={isCompletedScreen}
-                    completedTodos={completedTodos}
-                    handleDeleteCompletedTodo={handleDeleteCompletedTodo} />
+
+                <CompletedList />
+                
             </div>
         </div>
     )
