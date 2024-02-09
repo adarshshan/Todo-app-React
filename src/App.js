@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { MdOutlineDelete } from "react-icons/md";
-import { BsCheckCircle } from "react-icons/bs";
+import Todo from './Todo';
 
 import './App.css'
 
@@ -36,7 +35,7 @@ function App() {
     localStorage.setItem('todoList', JSON.stringify(reducedTodo));
     setTodos(reducedTodo);
   }
-  const handleDeleteCompletedTodo=(index)=>{
+  const handleDeleteCompletedTodo = (index) => {
     let reducedTodo = [...completedTodos];
     reducedTodo.splice(index, 1);
     localStorage.setItem('completedTodos', JSON.stringify(reducedTodo));
@@ -82,38 +81,15 @@ function App() {
           <button className={`secondaryBtn ${isCompletedScreen === false && 'active'}`} onClick={() => setIscompletedScreen(false)} >Todo</button>
           <button className={`secondaryBtn ${isCompletedScreen === true && 'active'}`} onClick={() => setIscompletedScreen(true)}>Completed</button>
         </div>
-        <div className="todo-list">
-          {isCompletedScreen === false && allTodos.map((item, index) => {
-            return (
-              <div className="todo-list-item" key={index}>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </div>
-                <div>
-                  <MdOutlineDelete className='icon' onClick={() => handleDeleteTodo(index)} title='Delete?' />
-                  <BsCheckCircle className='check-icon' onClick={() => handleComplete(index)} title='Complete?' />
 
-                </div>
-              </div>
-            )
-          })}
+        <Todo isCompletedScreen={isCompletedScreen}
+          allTodos={allTodos}
+          handleDeleteTodo={handleDeleteTodo}
+          handleComplete={handleComplete}
+          completedTodos={completedTodos}
+          handleDeleteCompletedTodo={handleDeleteCompletedTodo}
+        />
 
-          {isCompletedScreen === true && completedTodos.map((item, index) => {
-            return (
-              <div className="todo-list-item" key={index}>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                  <p><small>Completed on: {item.completedOn}</small></p>
-                </div>
-                <div>
-                  <MdOutlineDelete className='icon' onClick={() => handleDeleteCompletedTodo(index)} title='Delete?' />
-                </div>
-              </div>
-            )
-          })}
-        </div>
       </div>
     </div>
   )
