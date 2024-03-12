@@ -7,12 +7,12 @@ import ButtonArea from './Components/ButtonArea';
 const Mycontext = React.createContext();
 
 function App() {
+
   const [isCompletedScreen, setIscompletedScreen] = useState(false);
   const [allTodos, setTodos] = useState([]);
   const [newTitle, setNewTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
   const [completedTodos, setCompletedTodos] = useState([])
-
   useEffect(() => {
     const savedTodo = JSON.parse(localStorage.getItem('todoList'));
     const savedCompletedTodo = JSON.parse(localStorage.getItem('completedTodos'));
@@ -23,6 +23,7 @@ function App() {
   }, [])
 
   const handleAddTodo = () => {
+    if (!newTitle || !newDescription) return;
     let newTodoItem = {
       title: newTitle,
       description: newDescription
@@ -84,7 +85,6 @@ function App() {
             handleComplete={handleComplete}
             isCompletedScreen={isCompletedScreen} />
         </Mycontext.Provider>
-
       </div>
     </div>
   )
